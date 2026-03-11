@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Maxwell Omorodion Portfolio</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
   <style>
     /* Custom line style for separators */
@@ -35,10 +36,21 @@
     </div>
   </nav>
 
+  <!-- Hero Section -->
+  <section class="bg-dark text-white text-center py-5">
+    <div class="container">
+      <h1 class="display-4">Maxwell Omorodion</h1>
+      <p class="lead">Computer Science Student | Backend Development | System Programming</p>
+
+      <a href="#projects" class="btn btn-primary btn-lg mt-3 me-2">View Projects</a>
+      <a href="My new Resume.pdf" class="btn btn-outline-light btn-lg mt-3">Download Resume</a>
+    </div>
+  </section>
+
   <!-- About Me Section -->
   <section id="about" class="py-5 bg-light">
     <div class="container">
-      <h2 class="mb-4">About Me</h2>
+      <h2 class="text-center mb-5">About Me</h2>
       <p>Hi, I’m Maxwell Omorodion, a Computer Science student at Conestoga College. I’m passionate about building backend systems, CLI tools, and interactive programs. I enjoy developing modular and maintainable code, collaborating on team projects, and exploring new technologies through hands-on development. I’m currently seeking part-time opportunities to gain real-world experience while contributing my skills to impactful projects.</p>
     </div>
   </section>
@@ -48,15 +60,25 @@
   <!-- Skills Section -->
   <section id="skills" class="py-5">
     <div class="container">
-      <h2 class="mb-4">Skills</h2>
+      <h2 class="text-center mb-5">Skills</h2>
       <div class="row">
         <div class="col-md-6">
           <h5>Programming Languages</h5>
-          <p>C, C++, Java, JavaScript, C#, Python</p>
+          <span class="badge bg-dark m-1">C</span>
+          <span class="badge bg-dark m-1">C++</span>
+          <span class="badge bg-dark m-1">Java</span>
+          <span class="badge bg-dark m-1">JavaScript</span>
+          <span class="badge bg-dark m-1">C#</span>
+          <span class="badge bg-dark m-1">Python</span>
         </div>
         <div class="col-md-6">
           <h5>Tools & Frameworks</h5>
-          <p>Node.js, .NET, WPF, Git/GitHub, Visual Studio, VS Code</p>
+          <span class="badge bg-secondary m-1">Node.js</span>
+          <span class="badge bg-secondary m-1">.NET</span>
+          <span class="badge bg-secondary m-1">WPF</span>
+          <span class="badge bg-secondary m-1">Git</span>
+          <span class="badge bg-secondary m-1">GitHub</span>
+          <span class="badge bg-secondary m-1">VS Code</span>
         </div>
         <div class="col-md-6">
           <h5>Concepts</h5>
@@ -75,7 +97,7 @@
   <!-- Projects Section -->
   <section id="projects" class="py-5 bg-light">
     <div class="container">
-      <h2 class="mb-4">Projects</h2>
+      <h2 class="text-center mb-5">Projects</h2>
       <div class="row">
         <!-- Task Manager CLI -->
         <div class="col-md-4">
@@ -115,7 +137,7 @@
   <!-- Education Section -->
   <section id="education" class="py-5">
     <div class="container">
-      <h2 class="mb-4">Education</h2>
+      <h2 class="text-center mb-5">Education</h2>
       <p><strong>Conestoga College — Computer Science Diploma</strong><br>
       Expected Graduation: 2028<br>
       Relevant Courses: Data Structures, Web Development, Algorithms, Software Engineering</p>
@@ -127,14 +149,28 @@
   <!-- Contact Section -->
   <section id="contact" class="py-5 bg-light">
     <div class="container">
-      <h2 class="mb-4">Contact</h2>
-      <p>Email: omorodionmaxwell0@gmail.com</p>
-      <p>GitHub: <a href="https://github.com/DisguisedMax" target="_blank">github.com/DisguisedMax</a></p>
-      <p>LinkedIn: <a href="https://www.linkedin.com/in/maxwell-omorodion-792751299/" target="_blank">linkedin.com/in/maxwell-omorodion-792751299/</a></p>
+      <div class="container">
+  <h2 class="text-center mb-5">Contact</h2>
 
-      <a href="My new Resume.pdf" class="btn btn-primary mt-3" target="_blank">
-        Download Resume
-      </a>
+  <p><i class="fas fa-envelope me-2"></i> Email: omorodionmaxwell0@gmail.com</p>
+
+  <p><i class="fab fa-github me-2"></i> GitHub:
+    <a href="https://github.com/DisguisedMax" target="_blank">
+      github.com/DisguisedMax
+    </a>
+  </p>
+
+  <p><i class="fab fa-linkedin me-2"></i> LinkedIn:
+    <a href="https://www.linkedin.com/in/maxwell-omorodion-792751299/" target="_blank">
+      linkedin.com/in/maxwell-omorodion-792751299
+    </a>
+  </p>
+
+  <a href="My new Resume.pdf" class="btn btn-primary mt-3" target="_blank">
+    <i class="fas fa-download me-2"></i> Download Resume
+  </a>
+
+</div>
     </div>
   </section>
 
