@@ -424,7 +424,35 @@
       align-items: flex-start;
       gap: 2rem;
     }
-    
+    /* ─── FEATURED PROJECT ─── */
+    .project-card.featured {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+    .featured-left { display: flex; flex-direction: column; gap: 0.9rem; }
+    .featured-screenshots {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem;
+    }
+    .featured-screenshots img {
+      width: 100%;
+      border-radius: 6px;
+      border: 1px solid var(--navy-border);
+      object-fit: cover;
+      aspect-ratio: 16/10;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .featured-screenshots img:hover {
+      border-color: var(--accent-dim);
+      transform: scale(1.02);
+    }
+    @media (max-width: 768px) {
+      .project-card.featured { grid-template-columns: 1fr; }
+    }
     .edu-institution {
       font-family: var(--mono);
       font-size: 0.75rem;
@@ -804,20 +832,29 @@
           </div>
         </div>
 
-        <div class="project-card fade-up" style="transition-delay: 0.3s">
-          <div class="project-num">04</div>
-          <h3 class="project-title">Smart Driver Tracker</h3>
-          <p class="project-desc">A mobile driving tracker app built with Expo and React Native. Monitors driving behavior and surfaces safety insights through a dashboard UI. Team project focused on real-time data, telemetry, and mobile-first UX.</p>
-          <div class="project-tags">
-            <span class="project-tag">Expo</span>
-            <span class="project-tag">React Native</span>
-            <span class="project-tag">Mobile</span>
-            <span class="project-tag">Team Project</span>
+        <div class="project-card featured fade-up" style="transition-delay: 0.3s">
+          <div class="featured-left">
+            <div class="project-num">04</div>
+            <h3 class="project-title">Smart Driver Tracker</h3>
+            <p class="project-desc">A full-stack mobile app built with Expo and React Native that monitors driving behavior in real time. Features a live trip tracker with speed and distance telemetry, a teen dashboard with trip history and safety scores, and a parent dashboard with alerts for harsh braking and speeding. Team project with a clean multi-screen navigation system.</p>
+            <div class="project-tags">
+              <span class="project-tag">Expo</span>
+              <span class="project-tag">React Native</span>
+              <span class="project-tag">Mobile</span>
+              <span class="project-tag">Telemetry</span>
+              <span class="project-tag">Team Project</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/DisguisedMax/Smart-Driver-Tracker" class="project-link" target="_blank">
+                <i class="fab fa-github"></i> GitHub
+              </a>
+            </div>
           </div>
-          <div class="project-links">
-            <a href="https://github.com/JasonSafari/Sec3-Group3-Smart-Driver-Tracker" class="project-link" target="_blank">
-              <i class="fab fa-github"></i> GitHub
-            </a>
+          <div class="featured-screenshots">
+            <img src="AllTrips.png" alt="Trips screen">
+            <img src="ParentDashboard.png" alt="Parent dashboard">
+            <img src="TeenDashboard.png" alt="Teen driving dashboard">
+            <img src="LiveTrip.png" alt="Live trip tracking">
           </div>
         </div>
 
@@ -903,7 +940,8 @@
     <div class="footer-right">CS Student — Conestoga College</div>
   </footer>
 
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    // Intersection Observer for fade-up animations
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -916,4 +954,5 @@
   </script>
 
 </body>
-</html>
+</html> 
+      
