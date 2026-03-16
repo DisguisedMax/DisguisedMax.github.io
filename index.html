@@ -3,136 +3,692 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Maxwell Omorodion Portfolio</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <title>Maxwell Omorodion — CS Student & Backend Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link rel="stylesheet" href="style.css">
   <style>
-    /* Custom line style for separators */
-    hr.section-divider {
-      border: 0;
-      border-top: 2px solid #343a40; /* dark gray line */
-      margin: 3rem 0; /* spacing before and after line */
+    :root {
+      --navy-deepest: #04091a;
+      --navy-deep:    #070f26;
+      --navy-mid:     #0b1835;
+      --navy-light:   #112249;
+      --navy-border:  #1a3060;
+      --navy-hover:   #1e3870;
+      --accent:       #4d8ef0;
+      --accent-dim:   #2a5db8;
+      --accent-glow:  rgba(77,142,240,0.18);
+      --white:        #f0f4ff;
+      --white-dim:    #8fa8d4;
+      --white-muted:  #4a6090;
+      --mono:         'DM Mono', monospace;
+      --display:      'Syne', sans-serif;
+      --body:         'Inter', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--body);
+      background-color: var(--navy-deepest);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 3rem;
+      background: rgba(4, 9, 26, 0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(26, 48, 96, 0.6);
+    }
+    .nav-logo {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--white-dim);
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-cta {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--accent);
+      text-decoration: none;
+      border: 1px solid var(--accent-dim);
+      padding: 0.4rem 1rem;
+      border-radius: 4px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .nav-cta:hover {
+      background: var(--accent-glow);
+      color: var(--white);
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 8rem 3rem 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 70% 50%, rgba(77,142,240,0.07) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 10% 80%, rgba(11,24,53,0.8) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(26,48,96,0.18) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(26,48,96,0.18) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 10%, transparent 90%);
+      pointer-events: none;
+    }
+    .hero-content { position: relative; max-width: 720px; }
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 28px;
+      height: 1px;
+      background: var(--accent);
+    }
+    .hero-name {
+      font-family: var(--display);
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-weight: 800;
+      line-height: 1.02;
+      letter-spacing: -0.02em;
+      color: var(--white);
+      margin-bottom: 1.25rem;
+    }
+    .hero-name span {
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(77,142,240,0.7);
+    }
+    .hero-sub {
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: var(--white-dim);
+      line-height: 1.7;
+      max-width: 520px;
+      margin-bottom: 2.5rem;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .btn-primary-hero {
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      letter-spacing: 0.06em;
+      color: var(--navy-deepest);
+      background: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 0.75rem 1.75rem;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary-hero:hover { background: #6aaaf5; transform: translateY(-1px); }
+    .btn-outline-hero {
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      letter-spacing: 0.06em;
+      color: var(--white-dim);
+      background: transparent;
+      border: 1px solid var(--navy-border);
+      padding: 0.75rem 1.75rem;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-outline-hero:hover { border-color: var(--accent-dim); color: var(--white); }
+
+    .hero-scroll-hint {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      opacity: 0.35;
+    }
+    .hero-scroll-hint span { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.1em; color: var(--white-dim); }
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--white-dim), transparent);
+      animation: scrollDown 1.6s ease-in-out infinite;
+    }
+    @keyframes scrollDown {
+      0%   { transform: scaleY(0); transform-origin: top; }
+      50%  { transform: scaleY(1); transform-origin: top; }
+      51%  { transform: scaleY(1); transform-origin: bottom; }
+      100% { transform: scaleY(0); transform-origin: bottom; }
+    }
+
+    /* ─── SECTIONS ─── */
+    section { padding: 6rem 3rem; }
+    .section-inner { max-width: 960px; margin: 0 auto; }
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 0.14em;
+      margin-bottom: 0.6rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .section-label::before {
+      content: '';
+      display: inline-block;
+      width: 20px;
+      height: 1px;
+      background: var(--accent);
+    }
+    .section-title {
+      font-family: var(--display);
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 3rem;
+      letter-spacing: -0.02em;
+    }
+
+    /* ─── ABOUT ─── */
+    #about { background: var(--navy-deep); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .about-text p {
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--white-dim);
+      line-height: 1.85;
+    }
+    .about-text p + p { margin-top: 1rem; }
+    .about-stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--navy-border);
+      border: 1px solid var(--navy-border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .about-stat {
+      background: var(--navy-mid);
+      padding: 1.5rem;
+    }
+    .about-stat-num {
+      font-family: var(--display);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+    .about-stat-label {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--white-muted);
+      letter-spacing: 0.08em;
+    }
+
+    /* ─── SKILLS ─── */
+    #skills { background: var(--navy-deepest); }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .skill-card {
+      background: var(--navy-mid);
+      border: 1px solid var(--navy-border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .skill-card:hover {
+      border-color: var(--accent-dim);
+      transform: translateY(-3px);
+    }
+    .skill-card-title {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+    }
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .skill-tag {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--white-dim);
+      background: rgba(77,142,240,0.08);
+      border: 1px solid rgba(77,142,240,0.2);
+      padding: 0.25rem 0.65rem;
+      border-radius: 3px;
+    }
+    .skill-tag.lang { color: var(--accent); border-color: rgba(77,142,240,0.4); }
+    .skill-text {
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: var(--white-dim);
+      line-height: 1.6;
+    }
+
+    /* ─── PROJECTS ─── */
+    #projects { background: var(--navy-deep); }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .project-card {
+      background: var(--navy-mid);
+      border: 1px solid var(--navy-border);
+      border-radius: 10px;
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+      transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+    .project-card:hover {
+      border-color: rgba(77,142,240,0.45);
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 40px rgba(77,142,240,0.06);
+    }
+    .project-card:hover::before { opacity: 1; }
+    .project-num {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--white-muted);
+      letter-spacing: 0.08em;
+    }
+    .project-title {
+      font-family: var(--display);
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1.3;
+    }
+    .project-desc {
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: var(--white-dim);
+      line-height: 1.7;
+      flex: 1;
+    }
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+    .project-tag {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--accent);
+      background: rgba(77,142,240,0.1);
+      border: 1px solid rgba(77,142,240,0.25);
+      padding: 0.2rem 0.55rem;
+      border-radius: 3px;
+    }
+    .project-links { display: flex; gap: 0.75rem; margin-top: auto; }
+    .project-link {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--white-dim);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: color 0.2s;
+    }
+    .project-link:hover { color: var(--accent); }
+    .project-link i { font-size: 0.8rem; }
+
+    /* ─── EDUCATION ─── */
+    #education { background: var(--navy-deepest); }
+    .edu-card {
+      background: var(--navy-mid);
+      border: 1px solid var(--navy-border);
+      border-radius: 10px;
+      padding: 2rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 2rem;
+    }
+    .edu-left {}
+    .edu-institution {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      margin-bottom: 0.5rem;
+    }
+    .edu-degree {
+      font-family: var(--display);
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+    .edu-date {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--white-muted);
+    }
+    .edu-courses {
+      margin-top: 1.25rem;
+    }
+    .edu-courses-label {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--white-muted);
+      letter-spacing: 0.1em;
+      margin-bottom: 0.6rem;
+    }
+    .edu-courses-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .edu-course-tag {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--white-dim);
+      background: rgba(26,48,96,0.7);
+      border: 1px solid var(--navy-border);
+      padding: 0.22rem 0.6rem;
+      border-radius: 3px;
+    }
+    .edu-badge {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      background: var(--accent-glow);
+      color: var(--accent);
+      border: 1px solid rgba(77,142,240,0.3);
+      padding: 0.4rem 0.9rem;
+      border-radius: 4px;
+      white-space: nowrap;
+      align-self: flex-start;
+    }
+
+    /* ─── CONTACT ─── */
+    #contact { background: var(--navy-deep); }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .contact-intro {
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--white-dim);
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+    .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      text-decoration: none;
+      padding: 1rem 1.25rem;
+      background: var(--navy-mid);
+      border: 1px solid var(--navy-border);
+      border-radius: 8px;
+      transition: border-color 0.2s, transform 0.15s;
+    }
+    .contact-link:hover {
+      border-color: var(--accent-dim);
+      transform: translateX(4px);
+    }
+    .contact-link-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 6px;
+      background: var(--accent-glow);
+      border: 1px solid rgba(77,142,240,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+    .contact-link-body {}
+    .contact-link-label {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--white-muted);
+      letter-spacing: 0.08em;
+      margin-bottom: 0.15rem;
+    }
+    .contact-link-value {
+      font-size: 0.88rem;
+      color: var(--white-dim);
+    }
+    .contact-resume {
+      background: var(--navy-mid);
+      border: 1px solid var(--navy-border);
+      border-radius: 10px;
+      padding: 2rem;
+    }
+    .contact-resume-title {
+      font-family: var(--display);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+    .contact-resume-sub {
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: var(--white-dim);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+    .btn-resume {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+      color: var(--navy-deepest);
+      background: var(--accent);
+      border: none;
+      padding: 0.7rem 1.4rem;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .btn-resume:hover { background: #6aaaf5; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--navy-deepest);
+      border-top: 1px solid var(--navy-border);
+      padding: 2rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-left {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--white-muted);
+    }
+    .footer-left span { color: var(--accent); }
+    .footer-right {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--white-muted);
+    }
+
+    /* ─── DIVIDER ─── */
+    .section-divider {
+      height: 1px;
+      background: var(--navy-border);
+      border: none;
+      margin: 0;
+    }
+
+    /* ─── ANIMATIONS ─── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .hero { padding: 7rem 1.5rem 4rem; }
+      section { padding: 4rem 1.5rem; }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .projects-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 0.5rem; text-align: center; }
     }
   </style>
 </head>
 <body>
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-      <a class="navbar-brand" href="#">Maxwell Omorodion</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
-          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-          <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-        </ul>
-      </div>
-    </div>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">maxwell.dev</a>
+    <ul class="nav-links">
+      <li><a href="#about">about</a></li>
+      <li><a href="#skills">skills</a></li>
+      <li><a href="#projects">projects</a></li>
+      <li><a href="#education">education</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">contact</a>
   </nav>
 
-  <!-- Hero Section -->
-  <section class="bg-dark text-white text-center py-5" style="background-color:#0b1d51;">
-  <div class="container">
-    <h1 class="display-3 fw-bold">Maxwell Omorodion</h1>
-    <p class="lead">Computer Science Student | Backend & Systems Programming</p>
-    <div class="mt-4">
-      <a href="#projects" class="btn btn-primary btn-lg me-3">View Projects</a>
-      <a href="My new Resume.pdf" class="btn btn-outline-light btn-lg">Download Resume</a>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-grid-bg"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">CS Student — Conestoga College</div>
+      <h1 class="hero-name">
+        Maxwell<br><span>Omorodion</span>
+      </h1>
+      <p class="hero-sub">
+        Backend & systems programming — building modular, maintainable software.
+        Interested in real-world impact, clean architecture, and shipping things that work.
+      </p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn-primary-hero">View Projects</a>
+        <a href="My new Resume.pdf" class="btn-outline-hero" target="_blank">Download Resume</a>
+      </div>
     </div>
-  </div>
-</section>
-
-  <!-- About Me Section -->
-  <section id="about" class="py-5 bg-light">
-    <div class="container">
-      <h2 class="text-center mb-5">About Me</h2>
-      <p>Hi, I’m Maxwell Omorodion, a Computer Science student at Conestoga College. I’m passionate about building backend systems, CLI tools, and interactive programs. I enjoy developing modular and maintainable code, collaborating on team projects, and exploring new technologies through hands-on development. I’m currently seeking part-time opportunities to gain real-world experience while contributing my skills to impactful projects.</p>
+    <div class="hero-scroll-hint">
+      <span>scroll</span>
+      <div class="scroll-line"></div>
     </div>
   </section>
 
-  <hr class="section-divider">
-
-  <!-- Skills Section -->
-  <section id="skills" class="py-5">
-    <div class="container">
-      <h2 class="text-center mb-5">Skills</h2>
-      <div class="row">
-        <div class="col-md-6">
-          <h5>Programming Languages</h5>
-            <div class="mb-3">
-            <span class="badge bg-primary m-1">C</span>
-            <span class="badge bg-primary m-1">C++</span>
-            <span class="badge bg-primary m-1">Java</span>
-            <span class="badge bg-primary m-1">JavaScript</span>
-            <span class="badge bg-primary m-1">C#</span>
-            <span class="badge bg-primary m-1">Python</span>
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-inner">
+      <div class="section-label">01 / about</div>
+      <h2 class="section-title">Who I am</h2>
+      <div class="about-grid fade-up">
+        <div class="about-text">
+          <p>I'm a Computer Science student at Conestoga College with a strong focus on backend systems, CLI tools, and interactive programs. I care about writing clean, modular code that actually solves problems — not just compiling without errors.</p>
+          <p>I enjoy collaborating on team projects, exploring new technologies through hands-on builds, and pushing through hard problems until I understand them deeply. Currently seeking part-time opportunities to grow alongside a team doing meaningful work.</p>
+        </div>
+        <div class="about-stat-grid">
+          <div class="about-stat">
+            <div class="about-stat-num">3+</div>
+            <div class="about-stat-label">PROJECTS SHIPPED</div>
           </div>
-        <div class="col-md-6">
-          <h5>Tools & Frameworks</h5>
-          <span class="badge bg-secondary m-1">Node.js</span>
-          <span class="badge bg-secondary m-1">.NET</span>
-          <span class="badge bg-secondary m-1">WPF</span>
-          <span class="badge bg-secondary m-1">Git</span>
-          <span class="badge bg-secondary m-1">GitHub</span>
-          <span class="badge bg-secondary m-1">VS Code</span>
-        </div>
-        <div class="col-md-6">
-          <h5>Concepts</h5>
-          <p>Modular Programming, OOP, CLI Applications, Data Structures, System Programming</p>
-        </div>
-        <div class="col-md-6">
-          <h5>Soft Skills</h5>
-          <p>Problem-solving, Teamwork, Communication, Attention to Detail, Time Management</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <hr class="section-divider">
-
-  <!-- Projects Section -->
-  <section id="projects" class="py-5 bg-light">
-    <div class="container">
-      <h2 class="text-center mb-5">Projects</h2>
-      <div class="row">
-        <!-- Task Manager CLI -->
-        <div class="col-md-4">
-         <div class="card mb-4 shadow-sm">
-           <div class="card-body">
-            <h5 class="card-title">Task Manager CLI</h5>
-            <p class="card-text">Command-line task manager in C for creating, managing, and tracking tasks. Team project using modular design.</p>
-            <div class="mb-2">
-              <span class="badge bg-primary m-1">C</span>
-              <span class="badge bg-secondary m-1">CLI</span>
-              <span class="badge bg-secondary m-1">Team Project</span>
-            </div>
-            <a href="https://github.com/DisguisedMax/Task-Manager-Project" class="btn btn-outline-light" target="_blank">GitHub</a>
+          <div class="about-stat">
+            <div class="about-stat-num">6+</div>
+            <div class="about-stat-label">LANGUAGES</div>
           </div>
-        </div>
-      </div>
-        <!-- Smart Classroom Management -->
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title">Smart Classroom Management</h5>
-              <p class="card-text">WPF-based smart classroom monitoring system in C#. Features real-time environmental monitoring, alarm system, telemetry data processing, and modular MVVM design. Team project focused on collaboration and modular UI.</p>
-              <a href="https://github.com/kapalit/smart-classroom-management-system" class="btn btn-primary" target="_blank">View on GitHub</a>
-            </div>
+          <div class="about-stat">
+            <div class="about-stat-num">2028</div>
+            <div class="about-stat-label">GRADUATION</div>
           </div>
-        </div>
-        <!-- Distributed Image Transfer -->
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title">Distributed Image Transfer</h5>
-              <p class="card-text">A solo Node.js project to build a client-server system for transferring large JPEG images. Features TCP/IP communication, command-driven server, and packet logging. Focused on backend and system programming.</p>
-            </div>
+          <div class="about-stat">
+            <div class="about-stat-num">Open</div>
+            <div class="about-stat-label">TO WORK</div>
           </div>
         </div>
       </div>
@@ -141,53 +697,201 @@
 
   <hr class="section-divider">
 
-  <!-- Education Section -->
-  <section id="education" class="py-5">
-    <div class="container">
-      <h2 class="text-center mb-5">Education</h2>
-      <p><strong>Conestoga College — Computer Science Diploma</strong><br>
-      Expected Graduation: 2028<br>
-      Relevant Courses: Data Structures, Web Development, Algorithms, Software Engineering</p>
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-inner">
+      <div class="section-label">02 / skills</div>
+      <h2 class="section-title">What I work with</h2>
+      <div class="skills-grid fade-up">
+        <div class="skill-card">
+          <div class="skill-card-title">LANGUAGES</div>
+          <div class="skill-tags">
+            <span class="skill-tag lang">C</span>
+            <span class="skill-tag lang">C++</span>
+            <span class="skill-tag lang">Java</span>
+            <span class="skill-tag lang">JavaScript</span>
+            <span class="skill-tag lang">C#</span>
+            <span class="skill-tag lang">Python</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-card-title">TOOLS & FRAMEWORKS</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Node.js</span>
+            <span class="skill-tag">.NET</span>
+            <span class="skill-tag">WPF</span>
+            <span class="skill-tag">Git</span>
+            <span class="skill-tag">GitHub</span>
+            <span class="skill-tag">VS Code</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-card-title">CONCEPTS</div>
+          <p class="skill-text">Modular Programming, OOP, CLI Applications, Data Structures, System Programming, TCP/IP, MVVM Architecture</p>
+        </div>
+        <div class="skill-card" style="grid-column: 1 / -1;">
+          <div class="skill-card-title">SOFT SKILLS</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Problem-solving</span>
+            <span class="skill-tag">Teamwork</span>
+            <span class="skill-tag">Communication</span>
+            <span class="skill-tag">Attention to Detail</span>
+            <span class="skill-tag">Time Management</span>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
   <hr class="section-divider">
 
-  <!-- Contact Section -->
-  <section id="contact" class="py-5 bg-light">
-    <div class="container">
-      <div class="container">
-  <h2 class="text-center mb-5">Contact</h2>
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-inner">
+      <div class="section-label">03 / projects</div>
+      <h2 class="section-title">Things I've built</h2>
+      <div class="projects-grid">
 
-  <p><i class="fas fa-envelope me-2"></i> Email: omorodionmaxwell0@gmail.com</p>
+        <div class="project-card fade-up">
+          <div class="project-num">01</div>
+          <h3 class="project-title">Task Manager CLI</h3>
+          <p class="project-desc">Command-line task manager written in C for creating, managing, and tracking tasks. A team project emphasizing modular design and clean separation of concerns across multiple files and modules.</p>
+          <div class="project-tags">
+            <span class="project-tag">C</span>
+            <span class="project-tag">CLI</span>
+            <span class="project-tag">Team Project</span>
+            <span class="project-tag">Modular Design</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/DisguisedMax/Task-Manager-Project" class="project-link" target="_blank">
+              <i class="fab fa-github"></i> GitHub
+            </a>
+          </div>
+        </div>
 
-  <p><i class="fab fa-github me-2"></i> GitHub:
-    <a href="https://github.com/DisguisedMax" target="_blank">
-      github.com/DisguisedMax
-    </a>
-  </p>
+        <div class="project-card fade-up" style="transition-delay: 0.1s">
+          <div class="project-num">02</div>
+          <h3 class="project-title">Smart Classroom Management</h3>
+          <p class="project-desc">WPF-based monitoring system in C# with real-time environmental tracking, alarm systems, and telemetry data processing. Built with a clean MVVM architecture as a collaborative team project.</p>
+          <div class="project-tags">
+            <span class="project-tag">C#</span>
+            <span class="project-tag">WPF</span>
+            <span class="project-tag">MVVM</span>
+            <span class="project-tag">IoT</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/kapalit/smart-classroom-management-system" class="project-link" target="_blank">
+              <i class="fab fa-github"></i> GitHub
+            </a>
+          </div>
+        </div>
 
-  <p><i class="fab fa-linkedin me-2"></i> LinkedIn:
-    <a href="https://www.linkedin.com/in/maxwell-omorodion-792751299/" target="_blank">
-      linkedin.com/in/maxwell-omorodion-792751299
-    </a>
-  </p>
+        <div class="project-card fade-up" style="transition-delay: 0.2s">
+          <div class="project-num">03</div>
+          <h3 class="project-title">Distributed Image Transfer</h3>
+          <p class="project-desc">A solo Node.js client-server system for transferring large JPEG images over TCP/IP. Features command-driven server control, packet-level logging, and a focus on low-level backend and systems programming.</p>
+          <div class="project-tags">
+            <span class="project-tag">Node.js</span>
+            <span class="project-tag">TCP/IP</span>
+            <span class="project-tag">Systems</span>
+            <span class="project-tag">Networking</span>
+          </div>
+        </div>
 
-  <a href="My new Resume.pdf" class="btn btn-primary mt-3" target="_blank">
-    <i class="fas fa-download me-2"></i> Download Resume
-  </a>
-
-</div>
+      </div>
     </div>
   </section>
 
   <hr class="section-divider">
 
-  <!-- Footer -->
-  <footer class="bg-dark text-white text-center py-3">
-    &copy; 2026 Maxwell Omorodion
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="section-inner">
+      <div class="section-label">04 / education</div>
+      <h2 class="section-title">Background</h2>
+      <div class="edu-card fade-up">
+        <div class="edu-left">
+          <div class="edu-institution">CONESTOGA COLLEGE — WATERLOO, ON</div>
+          <div class="edu-degree">Computer Science Diploma</div>
+          <div class="edu-date">Expected Graduation: 2028</div>
+          <div class="edu-courses">
+            <div class="edu-courses-label">RELEVANT COURSES</div>
+            <div class="edu-courses-list">
+              <span class="edu-course-tag">Data Structures</span>
+              <span class="edu-course-tag">Web Development</span>
+              <span class="edu-course-tag">Algorithms</span>
+              <span class="edu-course-tag">Software Engineering</span>
+            </div>
+          </div>
+        </div>
+        <div class="edu-badge">Seeking Part-Time Roles</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-inner">
+      <div class="section-label">05 / contact</div>
+      <h2 class="section-title">Get in touch</h2>
+      <div class="contact-grid fade-up">
+        <div>
+          <p class="contact-intro">I'm currently looking for part-time opportunities where I can contribute, grow, and build. Whether it's a role, a project, or just a conversation — feel free to reach out.</p>
+          <div class="contact-links">
+            <a href="mailto:omorodionmaxwell0@gmail.com" class="contact-link">
+              <div class="contact-link-icon"><i class="fas fa-envelope"></i></div>
+              <div class="contact-link-body">
+                <div class="contact-link-label">EMAIL</div>
+                <div class="contact-link-value">omorodionmaxwell0@gmail.com</div>
+              </div>
+            </a>
+            <a href="https://github.com/DisguisedMax" target="_blank" class="contact-link">
+              <div class="contact-link-icon"><i class="fab fa-github"></i></div>
+              <div class="contact-link-body">
+                <div class="contact-link-label">GITHUB</div>
+                <div class="contact-link-value">github.com/DisguisedMax</div>
+              </div>
+            </a>
+            <a href="https://www.linkedin.com/in/maxwell-omorodion-792751299/" target="_blank" class="contact-link">
+              <div class="contact-link-icon"><i class="fab fa-linkedin"></i></div>
+              <div class="contact-link-body">
+                <div class="contact-link-label">LINKEDIN</div>
+                <div class="contact-link-value">linkedin.com/in/maxwell-omorodion</div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="contact-resume">
+          <div class="contact-resume-title">My Resume</div>
+          <p class="contact-resume-sub">A snapshot of my experience, skills, and projects — updated and ready to share. Download the PDF or view it in your browser.</p>
+          <a href="My new Resume.pdf" class="btn-resume" target="_blank">
+            <i class="fas fa-download"></i> Download Resume
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-left">&copy; 2026 <span>Maxwell Omorodion</span></div>
+    <div class="footer-right">CS Student — Conestoga College</div>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Intersection Observer for fade-up animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
+
 </body>
 </html>
